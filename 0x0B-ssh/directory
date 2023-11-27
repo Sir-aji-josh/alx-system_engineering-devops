@@ -1,0 +1,6 @@
+# Connect to the server
+ssh ubuntu@192.168.43.144
+
+# Open the authorized_keys file
+nano ~/.ssh/authorized_keys
+
