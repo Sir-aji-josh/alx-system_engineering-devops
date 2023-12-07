@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# 0-nginx_likes_port_80
+# Configures a server to listen on port 80 of all server's active IPv4 IPs using Nginx
+
+# Update package list and install necessary packages
+sudo apt-get update
+sudo apt-get install -y net-tools nginx
+
+# Check if Nginx is running and listening on port 80
+if ! netstat -tulpn | grep -q ':80'; then
+    # Edit the default Nginx configuration to include "listen 80;"
+    sudo sed -i '/listen 80;/! s/server {/server {\n    listen 80;/g' /etc/nginx/sites-available/default
+
+    # Test Nginx configuration for syntax errors
+    if sudo nginx -t; then
+        # Restart Nginx if the configuration is valid
+        sudo service nginx restart
+        echo "Nginx configured successfully to listen on port 80."
+    else
+        echo "Nginx configuration test failed. Please check your configuration."
+    fi
+else
+    echo "Nginx is already listening on port 80."
+fi
+
+# Additional commands or logging can be added as needed
+# sudo sed -i "s/8080/80/" /etc/nginx/sites-enabled/default
+# sudo service nginx restart
+
