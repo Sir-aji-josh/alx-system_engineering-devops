@@ -1,6 +1,5 @@
-#
 # 4-mysql_configuration_primary.cnf
-# 
+ 
 [mysqld]
 bind-address = 0.0.0.0  
 #
