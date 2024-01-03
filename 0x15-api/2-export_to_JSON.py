@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 """
 Python script that exports data in the JSON format.
 """
